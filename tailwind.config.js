@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         'airbnb-red': '#FF385C',
+        'faint-text':'#6A6A6A',
       },
       width: {
         '128': '32rem',
