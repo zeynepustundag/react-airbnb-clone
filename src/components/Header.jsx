@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { FaAirbnb } from "react-icons/fa6";
 import { TbWorld } from "react-icons/tb";
@@ -6,9 +6,17 @@ import { IoMdMenu } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
 import { IoSearch } from "react-icons/io5";
 
-const Header = ({scrollPosition}) => {
+import { Link } from 'react-router-dom';
+import DestinationSelectMenu from './DestinationSelectMenu';
+
+
+
+const Header = ({ scrollPosition }) => {
     const [searchFilter, setSearchFilter] = useState("accommodation");
-    
+    const [ClickedDiv, setClickedDiv] = useState(null);
+    const textRef = useRef(null);
+    const searchDivRef = useRef(null);
+
     const searchFilterHandler = () => {
         if (searchFilter === "accommodation") {
             setSearchFilter("experiences");
@@ -16,16 +24,54 @@ const Header = ({scrollPosition}) => {
             setSearchFilter("accommodation");
         }
     }
-   
+    const ClickDestinationDivHandler = () => {
+        setClickedDiv("destination");
+        textRef.current.focus();
+    }
+    const ClickCheckInDivHandler = () => {
+        setClickedDiv("checkin");
+    }
+    const ClickCheckOutDivHandler = () => {
+        setClickedDiv("checkout");
+    }
+    const ClickGuestDivHandler = () => {
+        setClickedDiv("guest");
+    }
+    const ClickDateDivHandler = () => {
+        setClickedDiv("date");
+    }
+    
+    useEffect(() => {
+
+        const CloseDivHandler = (event) => {
+            if (!searchDivRef.current?.contains(event.target)) {
+                setClickedDiv(null);
+            }
+        }
+        document.addEventListener("click", CloseDivHandler);
+
+        return () => {
+            document.removeEventListener("click", CloseDivHandler)
+        }
+    }, [])
+
     return (
 
         <div className='border-b fixed z-10 bg-white w-full'>
-            <div className='flex items-center justify-between px-4 lg:px-16 py-5'>
-                <div className='flex items-center cursor-pointer text-2xl text-airbnb-red'>
+            <div className='border border- shadow-md rounded-full flex items-center h-14 text-sm  mx-4 my-5 cursor-pointer md:hidden'>
+                <IoSearch className='cursor-pointer text-3xl mx-4' />
+                <div className='flex flex-col'>
+                    <p className='font-medium'>Nereye ?</p>
+                    <p className='text-faint-text text-xs'>Herhangi bir yer • Herhangi bir hafta • Misafir ekleyin</p>
+                </div>
+
+            </div>
+            <div className='items-center justify-between px-4 lg:px-16 py-5 hidden md:flex'>
+              <Link to="/"> <div  className='flex items-center cursor-pointer text-2xl text-airbnb-red'>
                     <FaAirbnb className='text-4xl mr-1' />
                     <p className='font-bold hidden lg:block'>airbnb</p>
                 </div>
-
+                </Link> 
                 {scrollPosition > 0 ?
                     <div className='border rounded-full flex items-center  m-auto h-12 shadow-sm text-sm hover:shadow-md transition duration-200 w-6/12'>
                         <div className='flex flex-col cursor-pointer  w-1/3'>
@@ -64,49 +110,53 @@ const Header = ({scrollPosition}) => {
                         <RxAvatar className='text-3xl ' />
                     </div>
                 </div>
+
             </div>
             {scrollPosition > 0
                 ?
                 null
                 :
-                <div className='border rounded-full flex items-center space-x-5 w-7/12 m-auto h-16 mb-6 shadow-md text-sm'>
-                    <div className='flex flex-col cursor-pointer flex-1'>
-                        <div className=' rounded-full hover:bg-gray-100 h-16 p-3 pl-6'>
+                <div ref={searchDivRef} className={`border rounded-full items-center space-x-5 lg:w-search-width md:w-11/12 m-auto h-16 mb-6 shadow-md text-sm hidden md:flex ${ClickedDiv === null ? "" : "bg-search-bg"}`}>
+                    <div onClick={ClickDestinationDivHandler} className='flex flex-col cursor-pointer flex-1 relative'>
+                        <div tabIndex="0" className={`group rounded-full hover:bg-gray-100 h-16 p-3 pl-6 ${ClickedDiv === "destination" ? "bg-white hover:bg-white" : ""}`}>
                             <p>Yer</p>
-                            <p className='text-faint-text whitespace-nowrap'>Gidilecek yerleri arayın</p>
+                            <textarea ref={textRef} className={`text-black outline-none resize-none min-h-6 group-hover:bg-gray-100 group-focus:bg-white placeholder-faint-text ${ClickedDiv !== "destination" && ClickedDiv !== null  ? "bg-search-bg" : "group-hover:bg-white"}`} rows="1" placeholder='Gidilecek yerleri arayın'></textarea>
                         </div>
+                        {ClickedDiv === "destination" ? <DestinationSelectMenu></DestinationSelectMenu> : ""}
                     </div>
+                    
                     {searchFilter === "accommodation" ?
                         <div className='flex flex-1'>
-                            <div className='flex flex-col cursor-pointer'>
-                                <div className='h-16 rounded-full  hover:bg-gray-100 p-3'>
+                            <div onClick={ClickCheckInDivHandler} className="flex flex-col cursor-pointer">
+                                <div  className={`h-16 rounded-full  hover:bg-gray-100 p-3 ${ClickedDiv === "checkin" ? "bg-white hover:bg-white" : ""}`}>
                                     <p>Giriş</p>
                                     <p className='text-faint-text whitespace-nowrap'>Tarih ekleyin</p>
                                 </div>
                             </div>
-                            <div className='flex flex-col cursor-pointer flex-1'>
-                                <div className='h-16 rounded-full  hover:bg-gray-100 p-3'>
+                            <div onClick={ClickCheckOutDivHandler} className='flex flex-col cursor-pointer flex-1'>
+                                <div  className={`h-16 rounded-full  hover:bg-gray-100 p-3 ${ClickedDiv === "checkout" ? "bg-white hover:bg-white" : ""}`}>
                                     <p>Çıkış</p>
                                     <p className='text-faint-text whitespace-nowrap'>Tarih ekleyin</p>
                                 </div>
                             </div>
                         </div>
                         :
-                        <div className='flex flex-col cursor-pointer flex-1'>
-                            <div className='h-16 rounded-full  hover:bg-gray-100 p-3'>
+                        <div onClick={ClickDateDivHandler} className='flex flex-col cursor-pointer flex-1'>
+                            <div className={`h-16 rounded-full  hover:bg-gray-100 p-3 ${ClickedDiv === "date" ? "bg-white hover:bg-white" : ""}`}>
                                 <p>Tarih</p>
                                 <p className='text-faint-text whitespace-nowrap'>Tarih ekleyin</p>
                             </div>
                         </div>
                     }
 
-                    <div className='flex items-center rounded-full justify-between flex-1 h-16 hover:bg-gray-100 '>
-                        <div className='h-full flex flex-col cursor-pointer p-3 '>
+                    <div onClick={ClickGuestDivHandler} className={`flex items-center rounded-full justify-between flex-1 h-16 hover:bg-gray-100 ${ClickedDiv === "guest" ? "bg-white hover:bg-white" : ""}`}>
+                        <div className="h-full flex flex-col cursor-pointer p-3  ">
                             <p>Kişiler</p>
                             <p className='text-faint-text whitespace-nowrap'>Misafir ekleyin</p>
                         </div>
-                        <div className='bg-airbnb-red rounded-full w-12 h-12 flex items-center justify-center mr-3 hover:bg-rose-600'>
+                        <div className={`bg-airbnb-red rounded-full w-12 h-12 flex items-center justify-center mr-3 hover:bg-rose-600 ${ClickedDiv === null ? "" : "md:bg-rose-600 lg:w-24"}`}>
                             <IoSearch className='text-white text-xl cursor-pointer' />
+                            <p className={`text-base pl-1 text-white ${ClickedDiv === null ? "hidden" : " hidden lg:block"}`}>Arama</p>
                         </div>
                     </div>
                 </div>

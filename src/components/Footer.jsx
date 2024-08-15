@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import FooterCategories from '../helpers/FooterCategories'
 import FooterPlaces from '../helpers/FooterPlaces'
-import FooterInfos from '../helpers/FooterInfos.JS';
+import FooterInfos from '../helpers/FooterInfos';
 
 import { TbWorld } from "react-icons/tb";
 import { FaFacebookSquare } from "react-icons/fa";
@@ -10,7 +10,7 @@ import { FaSquareInstagram } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 
 const Footer = () => {
-
+FooterInfos
     const [categoryNumber, setCategoryNumber] = useState(0);
     const [categoryIndex, setCategoryIndex] = useState(0);
     const [placeIndex, setPlaceIndex] = useState(7);
