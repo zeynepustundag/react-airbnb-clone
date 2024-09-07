@@ -12,11 +12,11 @@ const DestinationSelectMenu = ({ searchDestination, isMobileSearchClicked, setSe
     setSearchDestination(item);
   };
 
-  // console.log(ClickedDiv);
-  // console.log(destination);
+   console.log(":"+isMobileSearchClicked);
+   console.log(searchDestination);
 
   return (
-    <div className={`bg-white shadow-menu-shadow absolute top-16 z-20 left-2 rounded-3xl ${searchDestination ? "h-96" : "h-menu-height"} ${isMobileSearchClicked ? "w-full" : "w-menu-width"} ${isMobileSearchClicked ? "h-64" : ""}`}>
+    <div className={`bg-white shadow-menu-shadow absolute top-16 z-20 left-2 rounded-3xl   ${isMobileSearchClicked ? "h-64" : searchDestination ? "h-96" : "h-menu-height"} ${isMobileSearchClicked ? "w-full" : "w-menu-width"}`}>
       {searchDestination ?
         <div className='py-8 px-4'>
           {DestinationInfos.filter(item => item.toLowerCase().includes(searchDestination.toLowerCase())
