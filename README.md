@@ -2,6 +2,12 @@
 
 This project is a React-based web application designed to replicate the core features of Airbnb's user interface, allowing users to search for accommodations and experiences. The application is fully responsive and includes various components and features to enhance the user experience.
 
+## Demo
+
+You can see the live demo version of our project from the link below:
+
+[View Demo](https://your-demo-link.example.com)
+
 ## Features
 * **Home Page**: A comprehensive landing page displaying featured destinations, experiences, and the option to search for places to stay.
 * **Search Functionality**: Users can search for accommodations and experiences by selecting dates, number of guests, and other filters.
