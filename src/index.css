@@ -2,3 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+.swiper-button-prev, .swiper-button-next {
+    color: black;
+    background: white;
+    opacity: 0;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .swiper-button-prev::after, .swiper-button-next::after {
+    font-size: 1rem;
+  }
+  
+  .swiper-button-next:hover, .swiper-button-prev:hover {
+    transform: scale(1.05);
+  }
+  
+  .swiper-div:hover .swiper-button-prev,
+  .swiper-div:hover .swiper-button-next {
+    opacity: 1; 
+  }
+  .swiper-button-prev.swiper-button-disabled,
+  .swiper-button-next.swiper-button-disabled{
+    display: none;
+  }
+  .swiper-pagination-bullet{
+    background-color: white;
+    opacity: 50%;
+    width: 0.4rem;
+    height: 0.4rem;
+  }
+  .swiper-pagination-bullet-active{
+    opacity: 100%;
+  }
+  .overflow-hidden {
+    overflow: hidden !important;
+  }

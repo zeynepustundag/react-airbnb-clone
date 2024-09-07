@@ -6,34 +6,34 @@ import turkeyFlag from "../assets/turkeyFlag.jpg";
 import world from "../assets/world.jpg";
 const DestinationMenu = [
     {
-        id:1,
-        name:"Esnek arama",
-        img:world,
+        id: 1,
+        name: "Esnek arama",
+        img: world,
     },
     {
-        id:2,
-        name:"Türkiye",
-        img:turkeyFlag,
+        id: 2,
+        name: "Türkiye",
+        img: turkeyFlag,
     },
     {
-        id:3,
-        name:"Güney Kore",
-        img:koreanFlag,
+        id: 3,
+        name: "Güney Kore",
+        img: koreanFlag,
     },
     {
-        id:4,
-        name:"Kanada",
-        img:canadaFlag,
+        id: 4,
+        name: "Kanada",
+        img: canadaFlag,
     },
     {
-        id:5,
-        name:"İtalya",
-        img:italyFlag,
+        id: 5,
+        name: "İtalya",
+        img: italyFlag,
     },
     {
-        id:6,
-        name:"Mısır",
-        img:egyptFlag,
+        id: 6,
+        name: "Mısır",
+        img: egyptFlag,
     },
 
 ]

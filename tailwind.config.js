@@ -23,6 +23,9 @@ export default {
       boxShadow: {
         'menu-shadow': '0px 3px 12px 0px rgba(0, 0, 0, 0.15)',
       },
+      screens:{
+        'mobile': '479px',
+      },
     },
   },
   plugins: [],

@@ -23,6 +23,9 @@ const DestinationInfos = [
     "Gökçeada, Çanakkale",
     "Girne, Kuzey Kıbrıs Türk Cumhuriyeti",
     "Gaziantep",
-
+    "İstanbul, Türkiye",
+    "Kapadokya, Nevşehir",
+    "Sapanca",
+    "Portekiz",
 ]
 export default DestinationInfos;
