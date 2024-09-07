@@ -6,7 +6,7 @@ This project is a React-based web application designed to replicate the core fea
 
 You can see the live demo version of our project from the link below:
 
-[View Demo](https://your-demo-link.example.com)
+[View Demo](https://accomodationapp.netlify.app)
 
 ## Features
 * **Home Page**: A comprehensive landing page displaying featured destinations, experiences, and the option to search for places to stay.
