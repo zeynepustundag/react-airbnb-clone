@@ -43,10 +43,11 @@ const MobileSearch = ({ MobileSearchCloseHandler, searchFilterHandler,date,setDa
 
     return (
         <div className='bg-gray-100 z-50 absolute w-full h-[100vh] left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 '>
-            <div onClick={MobileSearchCloseHandler} className='bg-white cursor-pointer rounded-full hover:bg-gray-100 w-8 h-8 flex items-center justify-center  border border-black border-opacity-30 absolute left-6 top-4'>
+         
+            <div onClick={MobileSearchCloseHandler} className='bg-white cursor-pointer rounded-full hover:bg-gray-100 w-8 h-8 flex items-center justify-center  border border-black border-opacity-30 absolute left-6 top-7 mobile:top-4'>
                 <IoIosClose className='text-xl'></IoIosClose>
             </div>
-            <div className='flex items-center justify-center pt-5 space-x-4'>
+            <div className='flex items-center justify-center pt-9 space-x-4 mobile:pt-5'>
             <p onClick={searchFilter === "accommodation" ? null : searchFilterHandler} className={`${searchFilter === "accommodation" ? "font-medium border-b-2 border-black" : "text-faint-text"} mx-3 pb-2 cursor-pointer whitespace-nowrap`} >Konaklama Yerleri</p>
             <p onClick={searchFilter === "experiences" ? null : searchFilterHandler} className={`${searchFilter === "experiences" ? "font-medium border-b-2 border-black" : "text-faint-text"} mx-3 pb-2 cursor-pointer whitespace-nowrap`} >Deneyimler</p>
             </div>
@@ -100,7 +101,7 @@ const MobileSearch = ({ MobileSearchCloseHandler, searchFilterHandler,date,setDa
                 {ClickedDiv === "guest" ? <GuestSelectMenu isMobileSearchClicked={isMobileSearchClicked} adults={adults} children={children} infants={infants} pets={pets} setAdults={setAdults} setChildren={setChildren} setInfants={setInfants} setPets={setPets} total={total} searchFilter={searchFilter} ServiceAnimalHandler={ServiceAnimalHandler}></GuestSelectMenu> : ""}
             </div>
 
-            <div className='bg-white absolute bottom-0 w-full h-20 flex items-center justify-between border-t'>
+            <div className='bg-white absolute bottom-0 w-full h-20 flex items-center justify-between border-t pb-4'>
                 <p onClick={ClearAll} className='font-medium ml-6 underline cursor-pointer'>Hepsini temizle</p>
                 <div onClick={ClickMobileResortSearchHandler} className={`bg-airbnb-red rounded-md w-32 h-12 flex items-center justify-center mr-3 hover:bg-rose-600 ${ClickedDiv === null ? "" : "md:bg-rose-600 lg:w-24"}`}>
                     <IoSearch className='text-white text-xl cursor-pointer' />
